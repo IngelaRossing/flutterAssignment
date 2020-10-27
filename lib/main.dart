@@ -18,6 +18,13 @@ class TodoApp extends StatelessWidget {
   }
 }
 
+class Todo {
+  final String task;
+  final bool finished;
+
+  Todo(this.task, this.finished);
+}
+
 class TodoList extends StatefulWidget {
   @override
   createState() => TodoListState();
@@ -26,8 +33,15 @@ class TodoList extends StatefulWidget {
 // A page where we display all of our items
 class TodoListState extends State<TodoList> {
 
-  List<String> todos = ['hi', 'oh', 'there', 'I', 'didnt'];
+  List<Todo> todos = [];
 
+  TodoListState() {
+    todos.add(Todo('Bake', false));
+    todos.add(Todo('Eat', false));
+    todos.add(Todo('Poop', true));
+    todos.add(Todo('Dance', false));
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +56,8 @@ class TodoListState extends State<TodoList> {
         itemCount: todos.length, 
         itemBuilder: (BuildContext context,int index){ 
           return ListTile( 
-            leading: Checkbox(value: false,), //do something
-            title: Text("${todos[index]}"),
+            leading: Checkbox(value: todos[index].finished,), //do something
+            title: Text(todos[index].task),
             trailing: Icon(Icons.clear), //do something
           ); 
         } 
