@@ -4,7 +4,6 @@ void main() {
   runApp(TodoApp());
 }
 
-// A page where we display all of our items
 class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,6 +23,7 @@ class TodoList extends StatefulWidget {
   createState() => TodoListState();
 }
 
+// A page where we display all of our items
 class TodoListState extends State<TodoList> {
 
   List<String> todos = ['hi', 'oh', 'there', 'I', 'didnt'];
@@ -42,9 +42,9 @@ class TodoListState extends State<TodoList> {
         itemCount: todos.length, 
         itemBuilder: (BuildContext context,int index){ 
           return ListTile( 
-            leading: Icon(Icons.list), 
-            title: Text("${todos[index]}") ,
-            trailing: Icon(Icons.list),
+            leading: Checkbox(value: false,), //do something
+            title: Text("${todos[index]}"),
+            trailing: Icon(Icons.clear), //do something
           ); 
         } 
       ),
